@@ -1,0 +1,4 @@
+.remove_link_colour,.remove_link_colour:link,.remove_link_colour:visited,.remove_link_colour:hover,.remove_link_colour:focus,.remove_link_colour:active {
+    color: #FFFFFF;
+    text-decoration: none;
+}

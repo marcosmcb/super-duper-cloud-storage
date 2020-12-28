@@ -43,16 +43,17 @@ public class FilesController {
                 .map(file -> {
                     String dataUrl = ServletUriComponentsBuilder
                             .fromCurrentContextPath()
-                            .path("/files/")
-                            .path(file.getUserId() + "/" + file.getFileId())
+                            .path("/files/download")
+                            .path("/" + file.getFileId())
                             .toUriString();
                     return this.convertToResponseFile(file, dataUrl);
                 })
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/files/{userId}/{id}")
-    public ResponseEntity<byte[]> getFile(@PathVariable @NotNull Integer userId, @PathVariable @NotNull Integer id) {
+    @GetMapping("/download/{id}")
+    public ResponseEntity<byte[]> getFile(Authentication authentication, @PathVariable Integer id) {
+        Integer userId = this.userService.getUser(authentication.getName()).getUserId();
         File file = this.filesService.getFileById(id, userId);
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFileName() + "\"")
@@ -62,7 +63,7 @@ public class FilesController {
     @PostMapping
     public String createFile(Authentication authentication, @RequestParam("fileUpload") MultipartFile fileForm, Model model) throws IOException, BindException {
         Integer userId = this.userService.getUser(authentication.getName()).getUserId();
-        File fileData = new File(fileForm, userId, null);
+        File fileData = new File(fileForm, userId);
         this.resultsService.validateModel(fileData);
         this.filesService.createFile(fileData);
         this.resultsService.setAttributes(model, ResultStatusEnum.SUCCESS);

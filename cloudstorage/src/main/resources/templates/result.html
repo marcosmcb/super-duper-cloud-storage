@@ -4,26 +4,33 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
-
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/materialize.min.css}">
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/fonts.css}">
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/custom.css}">
         <title>Result</title>
     </head>
-    <body class="p-3 mb-2 bg-light text-black">
-        <div th:switch="${status}" class="container justify-content-center w-50 p-3" style="margin-top: 5em;">
-            <div th:case="SUCCESS" class="alert alert-success fill-parent">
-                <h1 class="display-5">Success</h1>
-                <span>Your changes were successfully saved. Click <a th:href="@{/home}">here</a> to continue.</span>
-            </div>
-            <div th:case="NOT_SAVED" class="alert alert-danger fill-parent">
-                <h1 class="display-5">Error</h1>
-                <span>Your changes were not saved. Click <a th:href="@{/home}">here</a> to continue.</span>
-            </div>
-            <div th:case="ERROR" class="alert alert-danger fill-parent">
-                <h1 class="display-5">Error</h1>
-                <div th:each="error : ${errors}">
-                    <span th:text="${error.field}"></span>: <span th:text="${error.defaultMessage}"></span>
+    <body class="container">
+        <div class="row mainbox">
+            <div th:switch="${status}" class="col s12">
+                <div th:case="SUCCESS" class="msg">
+                    <div class="row">
+                        <i class="far material-icons">done</i>
+                    </div>
+                    <span class="text-information">Your changes were successfully saved. Click <a th:href="@{/home}">here</a> to continue.</span>
                 </div>
-                <span>Click <a th:href="@{/home}">here</a> to continue.</span>
+                <div th:case="NOT_SAVED" class="msg">
+                    <i class="far material-icons">error_outline</i>
+                    <span class="text-information">An error happened while trying to process this request. Click <a th:href="@{/home}">here</a> to continue.</span>
+                </div>
+                <div th:case="ERROR" class="msg">
+                    <div class="row">
+                        <i class="far material-icons">error_outline</i>
+                    </div>
+                    <div th:each="error : ${errors}">
+                        <span class="text-information" th:text="${error.field}"></span>: <span th:text="${error.defaultMessage}"></span>
+                    </div>
+                    <span class="text-information">Click <a th:href="@{/home}">here</a> to continue.</span>
+                </div>
             </div>
         </div>
     </body>

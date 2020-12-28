@@ -35,7 +35,7 @@ public class File {
         this.fileData = fileData;
     }
 
-    public File(MultipartFile fileForm, Integer userId, Integer fileId) throws IOException {
+    public File(MultipartFile fileForm, Integer userId) throws IOException {
         this.fileData = fileForm.getBytes();
         this.fileName = fileForm.getOriginalFilename();
         this.fileSize = fileForm.getSize();

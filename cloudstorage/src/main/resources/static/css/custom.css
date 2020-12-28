@@ -2,3 +2,113 @@
     color: #FFFFFF;
     text-decoration: none;
 }
+
+.height-100 {
+    height: 100%;
+}
+
+.form-body {
+    display: table-cell;
+    vertical-align: middle;
+    background: #4DB6AC;
+    margin-top: 5em;
+}
+
+
+.margin-top {
+    margin-top: 1.5em;
+}
+
+
+.header {
+  font-weight: 600;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  font-family: 'Open Sans', monospace;
+}
+
+.home-body {
+    display: table-cell;
+    background: #4ECDC4;
+    margin-top: 5em;
+    vertical-align: middle;
+}
+
+.form-html {
+    display: table;
+    margin: auto;
+}
+
+#form-page {
+   width: 500px;
+}
+
+
+.ngl {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+}
+
+
+.page-style {
+    background: #FFFFFF;
+}
+
+nav, ul, li {
+    background: #3F51B5;
+}
+
+.text-information {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+
+
+.tabs .tab a {
+    color: #FFFFFF;
+    font-weight: bold;
+} /*White color to the text*/
+
+.tabs .tab a:hover a:focus.active {
+    background-color: #FF8A80;
+    color: #FFFFFF;
+} /*Text color on hover*/
+
+.tabs .tab a.active {
+   background-color: #3F51B5;
+   color: #FFFFFF;
+} /*Background and text color when a tab is active*/
+
+.tabs .indicator {
+    background-color: #FF8A80;
+} /*Color of underline*/
+
+
+.msg {
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1.6rem;
+    position: absolute;
+    left: 16%;
+    top: 25%;
+    width: 75%;
+    margin-bottom: 5em;
+}
+
+.far {
+  font-size: 8.5rem;
+  left: 42%;
+  top: 10%;
+  color: #ffffff;
+}
+
+.mainbox {
+  background-color: #95c2de;
+  margin: auto;
+  margin-top: 5em;
+  height: 400px;
+  width: 400px;
+  position: relative;
+}

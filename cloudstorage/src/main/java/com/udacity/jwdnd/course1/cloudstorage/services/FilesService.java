@@ -4,6 +4,7 @@ import com.udacity.jwdnd.course1.cloudstorage.mappers.FileMapper;
 import com.udacity.jwdnd.course1.cloudstorage.models.File;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 @Service
@@ -16,6 +17,10 @@ public class FilesService {
     }
 
     public int createFile(File fileData) {
+        File dbFile = this.fileMapper.getFileByName(fileData.getFileName(), fileData.getUserId());
+        if (dbFile != null) {
+            throw new ConstraintViolationException(fileData.getFileName() + " file already exists. ", null);
+        }
         return this.fileMapper.insertFile(fileData);
     }
 

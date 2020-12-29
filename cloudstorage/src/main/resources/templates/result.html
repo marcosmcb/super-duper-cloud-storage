@@ -20,7 +20,9 @@
                 </div>
                 <div th:case="NOT_SAVED" class="msg">
                     <i class="far material-icons">error_outline</i>
-                    <span class="text-information">An error happened while trying to process this request. Click <a th:href="@{/home}">here</a> to continue.</span>
+                    <br/>
+                    <span class="text-information" th:text="${error}">An error happened while trying to process this request.</span>
+                    <span class="text-information">Click <a th:href="@{/home}">here</a> to continue.</span>
                 </div>
                 <div th:case="ERROR" class="msg">
                     <div class="row">

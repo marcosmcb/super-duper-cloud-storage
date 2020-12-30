@@ -18,7 +18,7 @@
                 <h3 class="header col s6">Super Duper Drive</h3>
                 <div class="col s3 push-s1 margin-top">
                     <form th:action="@{/logout}" method="POST">
-                        <button type="submit" class="btn-large waves-effect waves-light indigo">Logout<i class="material-icons right">lock_open</i>
+                        <button type="submit" class="btn-large waves-effect waves-light indigo" id="btnLogOut">Logout<i class="material-icons right">lock_open</i>
                         </button>
                     </form>
                 </div>
@@ -86,11 +86,11 @@
                 <div id="nav-notes" class="col s12 z-depth-3 card-panel">
                     <div class="row">
                         <div class="col s2 push-s10">
-                            <button type="button" class="btn waves-effect waves-light indigo margin-top" onclick="showNoteModal()">
+                            <button type="button" class="btn waves-effect waves-light indigo margin-top" id="btnNotesAdd" onclick="showNoteModal()">
                                 <i class="material-icons left">note_add</i>New Note</button>
                         </div>
                     </div>
-                    <table class="highlight" id="userTable">
+                    <table class="highlight" id="notesTable">
                         <thead>
                         <tr>
                             <th style="width: 20%"></th>
@@ -140,6 +140,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="modal-close btn waves-effect waves-light red lighten-1">Close</button>
                                 <button type="button"
+                                            id="btnSaveNoteModal"
                                         class="modal-action modal-close btn waves-effect waves-light green lighten-1"
                                         onclick="$('#noteSubmit').click();"
                                 >Save changes</button>

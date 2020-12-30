@@ -1,6 +1,5 @@
 package com.udacity.jwdnd.course1.cloudstorage.models;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 

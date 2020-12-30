@@ -1,19 +1,30 @@
 package com.udacity.jwdnd.course1.cloudstorage;
 
+import com.udacity.jwdnd.course1.cloudstorage.models.User;
+import com.udacity.jwdnd.course1.cloudstorage.pages.LoginPage;
+import com.udacity.jwdnd.course1.cloudstorage.pages.NotePage;
+import com.udacity.jwdnd.course1.cloudstorage.pages.SignupPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class CloudStorageApplicationTests {
+public class CloudStorageApplicationTests {
 
 	@LocalServerPort
-	private int port;
+	protected int port;
 
-	private WebDriver driver;
+	protected String baseUrl;
+
+	protected WebDriver driver;
+
+	protected LoginPage loginPage;
+	protected SignupPage signupPage;
+	protected NotePage notePage;
 
 	@BeforeAll
 	static void beforeAll() {
@@ -23,6 +34,10 @@ class CloudStorageApplicationTests {
 	@BeforeEach
 	public void beforeEach() {
 		this.driver = new ChromeDriver();
+		this.baseUrl = "http://localhost:" + this.port;
+		this.loginPage = new LoginPage(this.driver);
+		this.signupPage = new SignupPage(this.driver);
+		this.notePage = new NotePage(this.driver);
 	}
 
 	@AfterEach
@@ -32,10 +47,8 @@ class CloudStorageApplicationTests {
 		}
 	}
 
-	@Test
-	public void getLoginPage() {
-		driver.get("http://localhost:" + this.port + "/login");
-		Assertions.assertEquals("Login", driver.getTitle());
+	protected void signUpAndLogInUser(User user) {
+		this.signupPage.createAndConfirmUser(this.baseUrl, user);
+		this.loginPage.logInUser(this.baseUrl, user);
 	}
-
 }

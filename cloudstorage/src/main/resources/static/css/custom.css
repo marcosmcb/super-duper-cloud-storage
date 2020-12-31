@@ -90,7 +90,7 @@ nav, ul, li {
     font-family: 'Nunito Sans', sans-serif;
     font-size: 1.6rem;
     position: absolute;
-    left: 16%;
+    left: 10%;
     top: 25%;
     width: 75%;
     margin-bottom: 5em;
@@ -98,16 +98,7 @@ nav, ul, li {
 
 .far {
   font-size: 8.5rem;
-  left: 42%;
+  left: 50%;
   top: 10%;
   color: #ffffff;
-}
-
-.mainbox {
-  background-color: #95c2de;
-  margin: auto;
-  margin-top: 5em;
-  height: 400px;
-  width: 400px;
-  position: relative;
 }

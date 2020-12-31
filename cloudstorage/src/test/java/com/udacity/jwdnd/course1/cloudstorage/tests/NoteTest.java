@@ -27,17 +27,34 @@ public class NoteTest extends CloudStorageApplicationTests {
         this.signUpAndLogInUser(this.newUser);
         String resultTitle = this.notePage.createNote(this.newNote, this.baseUrl, "/home");
 
-        Assertions.assertTrue(this.notePage.getNoteTitles().contains(newNote.getNoteDescription()));
+        Assertions.assertTrue(this.notePage.getNoteDescriptions().contains(newNote.getNoteDescription()));
         Assertions.assertEquals("Result", resultTitle);
     }
 
 
-//    @Test
-//    public void shouldEditExistingNote() {
-//        this.setNewUserAndNote();
-//
-//        this.signUpAndLogInUser(this.newUser);
-//        this.notePage.createNote(this.newNote, this.baseUrl, "/home");
-//        this.notePage.editNote();
-//    }
+    @Test
+    public void shouldEditExistingNote() {
+        this.setNewUserAndNote();
+
+        Note editedNote = new Util().createNote(13);
+
+        this.signUpAndLogInUser(this.newUser);
+        this.notePage.createNote(this.newNote, this.baseUrl, "/home");
+        String resultTitle = this.notePage.editNote(this.newNote, editedNote, this.baseUrl, "/home");
+
+        Assertions.assertTrue(this.notePage.getNoteDescriptions().contains(editedNote.getNoteDescription()));
+        Assertions.assertEquals("Result", resultTitle);
+    }
+
+    @Test
+    public void shouldDeleteExistingNote() {
+        this.setNewUserAndNote();
+        this.signUpAndLogInUser(this.newUser);
+
+        this.notePage.createNote(this.newNote, this.baseUrl, "/home");
+        String resultTitle = this.notePage.deleteNote(this.newNote, this.baseUrl, "/home");
+
+        Assertions.assertFalse(this.notePage.getNoteDescriptions().contains(this.newNote.getNoteDescription()));
+        Assertions.assertEquals("Result", resultTitle);
+    }
 }

@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class Page {
 
     protected WebDriver webDriver;
@@ -34,5 +36,24 @@ public class Page {
     protected void goHomeAndGoToTab(String baseUrl, String endpoint, String tabId) {
         this.webDriver.get(baseUrl + endpoint);
         this.waitForElementToBeClickableAndClick(tabId);
+    }
+
+
+    private boolean isCorrectRow(WebElement row, String itemToBeFound) {
+        for (WebElement data : row.findElements(By.tagName("td"))) {
+            if (data.getText().equals(itemToBeFound)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected WebElement findButton(List<WebElement> tableRows, String elementDescription, String className) {
+        for(WebElement row : tableRows) {
+            if (isCorrectRow(row, elementDescription)) {
+                return row.findElement(By.className(className));
+            }
+        }
+        return null;
     }
 }

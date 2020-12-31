@@ -39,6 +39,18 @@ public class NotePage extends Page {
     }
 
 
+    private void fillInForm(Note note) {
+        this.noteTitle.clear();
+        this.noteDescription.clear();
+
+        this.noteTitle.sendKeys(note.getNoteTitle());
+        this.noteDescription.sendKeys(note.getNoteDescription());
+
+        // Click on Save Note
+        this.waitForElementToBeClickableAndClick("btnSaveNoteModal");
+    }
+
+
 
     public String createNote(Note note, String baseUrl, String endpoint) {
         // Go to notes tab
@@ -47,23 +59,13 @@ public class NotePage extends Page {
         // Click on Add new Note
         this.waitForElementToBeClickableAndClick("btnNotesAdd");
 
-        this.noteTitle.sendKeys(note.getNoteTitle());
-        this.noteDescription.sendKeys(note.getNoteDescription());
+        this.fillInForm(note);
 
-        // Click on Save Note
-        this.waitForElementToBeClickableAndClick("btnSaveNoteModal");
-
-        this.webDriverWait.withTimeout(Duration.ofSeconds(TIMEOUT));
-        String resultTitle = this.webDriver.getTitle();
-
-        // Go back to Notes tab
-        this.goToTab(baseUrl, endpoint);
-
-        return resultTitle;
+        return getPageTitleAndGoHome(baseUrl, endpoint);
     }
 
 
-    public List<String> getNoteTitles() {
+    public List<String> getNoteDescriptions() {
         WebElement element = this.webDriverWait.until(ExpectedConditions.visibilityOf(tableNotes));
         List<WebElement> notes = element.findElements(By.tagName("td"));
         return notes.stream().map(note -> note.getText()).collect(Collectors.toList());
@@ -73,7 +75,35 @@ public class NotePage extends Page {
         this.goHomeAndGoToTab(baseUrl, endpoint, "nav-notes-tab");
     }
 
-    public String editNote() {
-        return "";
+    public String editNote(Note existingNote, Note updatedNote, String baseUrl, String endpoint) {
+        WebElement element = this.webDriverWait.until(ExpectedConditions.visibilityOf(tableNotes));
+        List<WebElement> rows = element.findElements(By.tagName("tr"));
+
+        WebElement editButton = findButton(rows, existingNote.getNoteDescription(), "green");
+        editButton.click();
+
+        this.fillInForm(updatedNote);
+
+        return this.getPageTitleAndGoHome(baseUrl, endpoint);
+    }
+
+    public String deleteNote(Note note, String baseUrl, String endpoint) {
+        WebElement element = this.webDriverWait.until(ExpectedConditions.visibilityOf(tableNotes));
+        List<WebElement> rows = element.findElements(By.tagName("tr"));
+
+        WebElement deleteButton = findButton(rows, note.getNoteDescription(), "red");
+        deleteButton.click();
+
+        return this.getPageTitleAndGoHome(baseUrl, endpoint);
+    }
+
+    private String getPageTitleAndGoHome(String baseUrl, String endpoint) {
+        this.webDriverWait.withTimeout(Duration.ofSeconds(TIMEOUT));
+        String resultTitle = this.webDriver.getTitle();
+
+        // Go back to Notes tab
+        this.goToTab(baseUrl, endpoint);
+
+        return resultTitle;
     }
 }

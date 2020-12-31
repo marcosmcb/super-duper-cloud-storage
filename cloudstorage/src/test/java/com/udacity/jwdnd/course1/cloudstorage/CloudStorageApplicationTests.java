@@ -27,6 +27,8 @@ public class CloudStorageApplicationTests {
 	protected NotePage notePage;
 	protected CredentialPage credentialPage;
 
+	protected static final String HOME_ENDPOINT = "/home";
+
 	@BeforeAll
 	static void beforeAll() {
 		WebDriverManager.chromedriver().setup();

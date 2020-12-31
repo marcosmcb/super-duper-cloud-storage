@@ -7,6 +7,7 @@ import com.udacity.jwdnd.course1.cloudstorage.utils.Util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import static com.udacity.jwdnd.course1.cloudstorage.utils.TitleEnum.RESULT;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -25,10 +26,10 @@ public class NoteTest extends CloudStorageApplicationTests {
         this.setNewUserAndNote();
 
         this.signUpAndLogInUser(this.newUser);
-        String resultTitle = this.notePage.createNote(this.newNote, this.baseUrl, "/home");
+        String resultTitle = this.notePage.createNote(this.newNote, this.baseUrl, HOME_ENDPOINT);
 
         Assertions.assertTrue(this.notePage.getNoteDescriptions().contains(newNote.getNoteDescription()));
-        Assertions.assertEquals("Result", resultTitle);
+        Assertions.assertEquals(RESULT.toString(), resultTitle);
     }
 
 
@@ -39,11 +40,11 @@ public class NoteTest extends CloudStorageApplicationTests {
         Note editedNote = new Util().createNote(13);
 
         this.signUpAndLogInUser(this.newUser);
-        this.notePage.createNote(this.newNote, this.baseUrl, "/home");
-        String resultTitle = this.notePage.editNote(this.newNote, editedNote, this.baseUrl, "/home");
+        this.notePage.createNote(this.newNote, this.baseUrl, HOME_ENDPOINT);
+        String resultTitle = this.notePage.editNote(this.newNote, editedNote, this.baseUrl, HOME_ENDPOINT);
 
         Assertions.assertTrue(this.notePage.getNoteDescriptions().contains(editedNote.getNoteDescription()));
-        Assertions.assertEquals("Result", resultTitle);
+        Assertions.assertEquals(RESULT.toString(), resultTitle);
     }
 
     @Test
@@ -51,10 +52,10 @@ public class NoteTest extends CloudStorageApplicationTests {
         this.setNewUserAndNote();
         this.signUpAndLogInUser(this.newUser);
 
-        this.notePage.createNote(this.newNote, this.baseUrl, "/home");
-        String resultTitle = this.notePage.deleteNote(this.newNote, this.baseUrl, "/home");
+        this.notePage.createNote(this.newNote, this.baseUrl, HOME_ENDPOINT);
+        String resultTitle = this.notePage.deleteNote(this.newNote, this.baseUrl, HOME_ENDPOINT);
 
         Assertions.assertFalse(this.notePage.getNoteDescriptions().contains(this.newNote.getNoteDescription()));
-        Assertions.assertEquals("Result", resultTitle);
+        Assertions.assertEquals(RESULT.toString(), resultTitle);
     }
 }

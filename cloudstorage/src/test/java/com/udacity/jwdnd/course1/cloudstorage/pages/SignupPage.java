@@ -33,7 +33,7 @@ public class SignupPage extends Page {
     private static String URL = "/signup";
 
     public SignupPage(WebDriver webDriver) {
-        super(webDriver);
+        super(webDriver, null);
         PageFactory.initElements(webDriver, this);
     }
 

@@ -2,9 +2,11 @@ package com.udacity.jwdnd.course1.cloudstorage.tests;
 
 import com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplicationTests;
 import com.udacity.jwdnd.course1.cloudstorage.models.User;
+import static com.udacity.jwdnd.course1.cloudstorage.utils.TitleEnum.LOGIN;
 import com.udacity.jwdnd.course1.cloudstorage.utils.Util;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
+
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SignUpTest extends CloudStorageApplicationTests {
@@ -13,7 +15,7 @@ public class SignUpTest extends CloudStorageApplicationTests {
     @Test
     public void shouldNotAuthorizeAccessToHomePage() {
         String currentTitle = this.signupPage.tryToAccessAuthenticatedPage(this.baseUrl);
-        Assertions.assertEquals("Login", currentTitle);
+        Assertions.assertEquals(LOGIN.toString(), currentTitle);
     }
 
     @Test

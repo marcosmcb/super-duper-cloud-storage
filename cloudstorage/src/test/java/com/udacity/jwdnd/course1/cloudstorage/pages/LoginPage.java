@@ -23,16 +23,16 @@ public class LoginPage extends Page {
     @FindBy(id = "btnLogOut")
     private WebElement buttonLogout;
 
-    private static String URL = "/login";
+    private static String LOGIN_ENDPOINT = "/login";
 
     public LoginPage(WebDriver webDriver) {
-        super(webDriver);
+        super(webDriver, null);
         PageFactory.initElements(webDriver, this);
     }
 
 
     public String logInUser(String baseUrl, User user) {
-        this.webDriver.get(baseUrl + URL);
+        this.webDriver.get(baseUrl + LOGIN_ENDPOINT);
         this.inputUsername.sendKeys(user.getUsername());
         this.inputPassword.sendKeys(user.getPassword());
         this.buttonLogin.click();
@@ -41,9 +41,10 @@ public class LoginPage extends Page {
         return this.webDriver.getTitle();
     }
 
-    public String logOutUser(String baseUrl) {
-        this.webDriver.get(baseUrl + "/home");
+    public String logOutUser(String baseUrl, String endpoint) {
+        this.webDriver.get(baseUrl + endpoint);
         this.buttonLogout.click();
+
         this.webDriverWait.withTimeout(Duration.ofSeconds(TIMEOUT));
         return this.webDriver.getTitle();
     }

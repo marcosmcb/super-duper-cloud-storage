@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.utils;
 
+import com.udacity.jwdnd.course1.cloudstorage.models.Credential;
 import com.udacity.jwdnd.course1.cloudstorage.models.Note;
 import com.udacity.jwdnd.course1.cloudstorage.models.User;
 
@@ -23,5 +24,9 @@ public class Util {
 
     public Note createNote(int length) {
         return new Note(null, randStr(length), randStr(length), null);
+    }
+
+    public Credential createCredential(int length) {
+        return new Credential(null, randStr(length), randStr(length), null, randStr(length), null);
     }
 }

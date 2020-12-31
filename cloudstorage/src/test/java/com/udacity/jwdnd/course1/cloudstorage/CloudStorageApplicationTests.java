@@ -1,13 +1,13 @@
 package com.udacity.jwdnd.course1.cloudstorage;
 
 import com.udacity.jwdnd.course1.cloudstorage.models.User;
+import com.udacity.jwdnd.course1.cloudstorage.pages.CredentialPage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.LoginPage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.NotePage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.SignupPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -25,6 +25,7 @@ public class CloudStorageApplicationTests {
 	protected LoginPage loginPage;
 	protected SignupPage signupPage;
 	protected NotePage notePage;
+	protected CredentialPage credentialPage;
 
 	@BeforeAll
 	static void beforeAll() {
@@ -35,9 +36,11 @@ public class CloudStorageApplicationTests {
 	public void beforeEach() {
 		this.driver = new ChromeDriver();
 		this.baseUrl = "http://localhost:" + this.port;
+
 		this.loginPage = new LoginPage(this.driver);
 		this.signupPage = new SignupPage(this.driver);
 		this.notePage = new NotePage(this.driver);
+		this.credentialPage = new CredentialPage(this.driver);
 	}
 
 	@AfterEach

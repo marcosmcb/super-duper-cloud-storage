@@ -86,4 +86,17 @@ public class Credential {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "Credential{" +
+                "credentialId=" + credentialId +
+                ", key='" + key + '\'' +
+                ", userId=" + userId +
+                ", unscrambledPassword='" + unscrambledPassword + '\'' +
+                ", url='" + url + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

@@ -25,7 +25,7 @@
                     <br/>
                     <span class="text-information" th:text="${error}">An error happened while trying to process this request.</span>
                     <br/>
-                    <span class="text-information">Click <u class="remove_link_colour" th:href="@{/home}"><u>here</u></a> to continue.</span>
+                    <span class="text-information">Click <a class="remove_link_colour" th:href="@{/home}"><u>here</u></a> to continue.</span>
                 </div>
                 <div th:case="ERROR" class="msg red darken-1">
                     <div class="row">
@@ -34,7 +34,7 @@
                     <div th:each="error : ${errors}">
                         <span class="text-information" th:text="${error.field}"></span>: <span th:text="${error.defaultMessage}"></span>
                     </div>
-                    <span class="text-information">Click <a class="remove_link_colour" th:href="@{/home}"><u>here</u></a> to continue.</span>
+                    <span class="text-information">Click <a th:href="@{/home}"><u>here</u></a> to continue.</span>
                 </div>
             </div>
         </div>

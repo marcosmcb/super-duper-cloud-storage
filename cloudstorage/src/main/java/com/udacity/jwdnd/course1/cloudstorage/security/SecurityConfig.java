@@ -31,18 +31,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/signup", "/css/**", "/js/**")
                 .permitAll()
                 .anyRequest()
-                .authenticated();
-
-        http.formLogin()
+                .authenticated()
+        .and()
+            .formLogin()
                 .loginPage("/login")
-                .permitAll();
-
-        http.logout()
+                .defaultSuccessUrl("/home", true)
+                .permitAll()
+        .and()
+            .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login")
                 .invalidateHttpSession(true); // set invalidation state when logout
-
-        http.formLogin()
-                .defaultSuccessUrl("/home", true);
     }
 }

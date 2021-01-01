@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/materialize.min.css}">
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/fonts.css}">
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/custom.css}">
+
+        <title>Error</title>
+    </head>
+    <body class="container">
+
+        <div class="col s12 card-panel msg red darken-1">
+            <i class="far material-icons">error_outline</i>
+            <br/>
+
+            <div th:switch="${errorCode}">
+                <div th:case="404">
+                    <span class="text-information">
+                        Sorry, we couldn't find the page you were looking for.
+                    </span>
+                </div>
+                <div th:case="*">
+                    <span class="text-information">Something went wrong!</span>
+                    <br />
+                    <span class="text-information">Our Engineers are on it</span>
+                </div>
+            </div>
+            <br/>
+            <span class="text-information">Click <a class="remove_link_colour" th:href="@{/home}"><u>here</u></a> to continue.</span>
+        </div>
+    </body>
+</html>

@@ -13,6 +13,7 @@ import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartException;
 
 import javax.servlet.RequestDispatcher;
@@ -55,7 +56,12 @@ public class SuperDuperExceptionController implements ErrorController {
         return "result";
     }
 
-    @ExceptionHandler(value = { MultipartException.class, SizeLimitExceededException.class, FileSizeLimitExceededException.class})
+    @ExceptionHandler(value = {
+            MultipartException.class,
+            SizeLimitExceededException.class,
+            FileSizeLimitExceededException.class,
+            MaxUploadSizeExceededException.class
+    })
     public String handleFileSizeLimitExceptions(MultipartException exception, Model model) {
         this.resultsService.setAttributes(model, ResultStatusEnum.NOT_SAVED);
         String errorMsg = exception.getMessage().split(";")[0];

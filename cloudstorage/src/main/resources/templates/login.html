@@ -18,6 +18,11 @@
         <div id="form-page" class="row">
             <div class="col s12 z-depth-6 card-panel">
                 <h3 class="center indigo-text">Login</h3>
+                <div th:if="${signupSuccess}" class="card-panel indigo lighten-3">
+                    <span id="success-msg" class="white-text text-darken-2">
+                        You successfully signed up!
+                    </span>
+                </div>
                 <form th:action="@{/login}" method="POST" class="login-form">
                     <div id="error-msg" th:if="${param.error}" class="card-panel red darken-1">
                         <span class="white-text text-darken-2"><b>Invalid username</b></span>

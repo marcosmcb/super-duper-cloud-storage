@@ -24,11 +24,6 @@
                 </a>
                 <form action="#" th:action="@{/signup}" method="POST" class="col s12" id="reg-form">
                     <h3 class="center indigo-text">Sign Up</h3>
-                    <div th:if="${signupSuccess}" class="card-panel indigo lighten-3">
-                        <span id="success-msg" class="white-text text-darken-2">
-                            You successfully signed up! Please continue to the <a class="white-text text-darken-2" id="login-link" th:href="@{/login}"><b><u>login</u></b></a> page.
-                        </span>
-                    </div>
                     <div th:if="${signupError}" class="card-panel red darken-1">
                         <span id="error-msg" class="white-text text-darken-2" th:text="${signupError}"></span>
                     </div>
